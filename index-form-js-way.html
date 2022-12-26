@@ -1,0 +1,36 @@
+<html>
+
+<body>
+    <button type="submit" id="checkoutButton">Checkout</button>
+
+
+    <script type="text/javascript" src="https://cdn.omise.co/omise.js">
+    </script>
+
+    <script>
+        OmiseCard.configure({
+            publicKey: "xxxxxxxxxxxxxxxxxxxxxxx"
+        });
+
+        var button = document.querySelector("#checkoutButton");
+
+        button.addEventListener("click", (event) => {
+            event.preventDefault();
+            OmiseCard.open({
+                amount: 12345,
+                currency: "THB",
+                defaultPaymentMethod: "credit_card",
+                onCreateTokenSuccess: (nonce) => {
+                    // if (nonce.startsWith("tokn_")) {
+                    //     form.omiseToken.value = nonce;
+                    // } else {
+                    //     form.omiseSource.value = nonce;
+                    // };
+                    console.log("nonce", nonce)
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>
